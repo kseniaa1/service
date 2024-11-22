@@ -12,6 +12,7 @@ public record ServiceRequestDTO(
     ServiceType name,
     @NotEmpty
     @NotBlank
-    int price
+    double price,
+    double duration
 ) {
 }

@@ -6,10 +6,12 @@ import com.cdpo_spring_developer.service.constants.StatusType;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record ReservationResponseDTO (
+public record
+ReservationResponseDTO (
         List<ServiceType> order,
         StatusType status,
-        String client,
-        LocalDateTime reservationDate
+        long client,
+        LocalDateTime reservationDate,
+        double discount
 ){
 }

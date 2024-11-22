@@ -11,8 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "admin")
-public class Admin {
+@Table(name = "application_user")
+public class ApplicationUser {
     @Id
     @GeneratedValue
     private long id;

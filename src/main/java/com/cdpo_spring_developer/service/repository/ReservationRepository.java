@@ -1,7 +1,8 @@
 package com.cdpo_spring_developer.service.repository;
 
+import com.cdpo_spring_developer.service.constants.ServiceType;
+import com.cdpo_spring_developer.service.constants.StatusType;
 import com.cdpo_spring_developer.service.entity.Reservation;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -24,5 +25,34 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             "GROUP BY reservationDate" +
             "ORDER BY reservationDate")
     Map<String, Integer> getIncomeByPeriod(String dateFrom, String dateTo);
+
+
+    @Query(nativeQuery = true,
+    value = "UPDATE reservation" +
+            "SET order = :order," +
+            "status = :status," +
+            "user_id = :client_id," +
+            "reservation_date = date" +
+            "WHERE  id = :id")
+    Reservation updateReservation(long id, List<ServiceType> order, StatusType status, long client_id, String date);
+
+
+    @Query(nativeQuery = true,
+    value = "UPDATE reservation" +
+            "SET discount = :discount," +
+            "total_price = :newTotalPrice" +
+            "WHERE id = :id")
+    Reservation updateDiscount(long id, double discount, double newTotalPrice);
+
+    @Query(nativeQuery = true,
+    value = "SELECT * FROM reservation" +
+            "WHERE user_id = :id")
+    List<Reservation> findAllByUserId(long id);
+
+    @Query(nativeQuery = true,
+    value = "UPDATE reservation" +
+            "SET status = :status" +
+            "WHERE id = :id")
+    void updateStatus(long id, StatusType status);
 }
 

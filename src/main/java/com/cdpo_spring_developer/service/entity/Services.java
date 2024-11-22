@@ -1,5 +1,6 @@
 package com.cdpo_spring_developer.service.entity;
 
+import com.cdpo_spring_developer.service.constants.ServiceType;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,11 +17,13 @@ public class Services {
     @Column(name = "id")
     private long id;
 
-    @ManyToOne
     @Column(name = "category")
-    private ServiceCategory serviceCategory;
+    private ServiceType serviceType;
 
     @Column(name = "price")
-    private int price;
+    private double price;
+
+    @Column(name = "duration")
+    private double duration;
 
 }

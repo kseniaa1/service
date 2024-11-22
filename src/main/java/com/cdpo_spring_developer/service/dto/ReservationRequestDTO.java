@@ -19,9 +19,11 @@ public record ReservationRequestDTO(
         StatusType status,
         @NotEmpty
         @NotNull
-        String client,
+        long client_id,
         @Future
         @NotNull
-        LocalDateTime reservationDate
+        LocalDateTime reservationDate,
+
+        double discount
 ) {
 }

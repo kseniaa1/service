@@ -1,6 +1,5 @@
 package com.cdpo_spring_developer.service.entity;
 
-import com.cdpo_spring_developer.service.constants.ServiceType;
 import com.cdpo_spring_developer.service.constants.StatusType;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -23,14 +22,12 @@ public class Reservation {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "order")
-    private List<ServiceType> order;
+    @ManyToMany
+    @JoinTable(name = "order")
+    private List<Services> order;
 
     @Column(name = "status")
     private StatusType status;
-
-    @Column(name = "client")
-    private String client;
 
     @Column(name = "reservation_date")
     private  LocalDateTime reservationDate;
@@ -44,7 +41,15 @@ public class Reservation {
     private LocalDateTime updatedAt;
 
     @Column(name = "total_price")
-    private int totalPrice;
+    private double totalPrice;
+
+    @Column(name = "discount")
+    private double discount;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private ApplicationUser user_id;
+
 
 }
 
